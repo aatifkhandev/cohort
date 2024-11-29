@@ -41,6 +41,23 @@ class Calculator {
   getResult() {
     return this.result;
   }
+  calculate(e){
+    // Evaluates the expression and stores the result in this.result
+    try{
+      this.result = eval(e);
+    }catch(err){
+      throw new Error('Invalid expression');
+    }
+    // Throws error if result is Infinity
+    if(this.result === Infinity){
+      throw new Error('Invalid expression');
+    }
+    this.result = Math.round(this.result * 100) / 100;
+    return this.result;
+  }
 }
+const calc = new Calculator();
+console.log(calc.calculate("10 + 2 * (6 - (4 + 1) / 2) + 7")); // 20
+console.log(calc.calculate("5 + 3 * 2")); // 11
 
 module.exports = Calculator;

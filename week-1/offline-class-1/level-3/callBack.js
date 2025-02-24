@@ -6,7 +6,7 @@ function arithmetic(a,b,type){
         return a-b;
     }
 }
-console.log(arithmetic(9,7,"sum"));
+// console.log(arithmetic(9,7,"sum"));
 
 
 function arithmetic1(a,b,type){ 
@@ -28,4 +28,12 @@ function sub(a,b){
     return a-b;
 }
 const ans = arithmetic1(9,7,"sub");
-console.log(ans);
+// console.log(ans);
+
+
+function operators(a,b,arithmeticOperations){ // passing functions in arguments
+    const value = arithmeticOperations(a,b)
+    return value;
+}
+console.log(operators(1,2,sub));
+

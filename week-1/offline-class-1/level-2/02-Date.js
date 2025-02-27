@@ -28,17 +28,17 @@ function dateMethods() {
 dateMethods();
 
 // Calculating time taken by a function to run
-const sumDate = new Date()
-const beforeFunction = sumDate.getSeconds();
-
 function sum(){
   let a = 0;
-  for(let i=0;i<10000000000000000000000000000000000000;i++){
+  for(let i=0;i<100000000000;i++){
     a+=i;
   }
   return a;
 }
+const sumDate = new Date()
+const beforeFunction = sumDate.getSeconds();
 
+sum()
 
 const afterFunction = sumDate.getSeconds();
 

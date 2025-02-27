@@ -35,5 +35,24 @@ function operators(a,b,arithmeticOperations){ // passing functions in arguments
     const value = arithmeticOperations(a,b)
     return value;
 }
-console.log(operators(1,2,sub));
+// console.log(operators(1,2,sub));
+
+// day - 2
+
+function square(n){
+    return n*n;
+}
+
+function cube(n){
+    return n*n*n;
+}
+
+
+function doSomething(a,b,fn){
+    const ans = fn(a)+fn(b)
+    return ans;
+}
+
+console.log(doSomething(2,2,cube));
+
 

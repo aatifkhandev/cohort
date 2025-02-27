@@ -26,3 +26,20 @@ function dateMethods() {
 
 // Example Usage for Date Methods
 dateMethods();
+
+// Calculating time taken by a function to run
+const sumDate = new Date()
+const beforeFunction = sumDate.getSeconds();
+
+function sum(){
+  let a = 0;
+  for(let i=0;i<10000000000000000000000000000000000000;i++){
+    a+=i;
+  }
+  return a;
+}
+
+
+const afterFunction = sumDate.getSeconds();
+
+console.log("The time taken is"+(afterFunction-beforeFunction));

@@ -1,7 +1,7 @@
 const fs = require('fs');
 function aatifReadfile(){
     return new Promise((resolve,reject)=>{
-     fs.readFile("3-new.txt","utf-8",function(err,data){
+     fs.readFile('./3-read.txt',"utf-8",function(err,data){
         if (err) reject(err)
        else resolve(data)
      })
@@ -17,7 +17,7 @@ aatifReadfile().then(callback).catch((err)=>console.log("Error"));
 
 
 
-const fs = require('fs');
+
  async function aatifReadfile(){
     return new Promise((resolve,reject)=>{
      fs.readFile("3-new.txt","utf-8",function(err,data){

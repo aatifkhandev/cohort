@@ -1,3 +1,4 @@
+
 const fs = require('fs')
 
 //my own asynchronous function
@@ -16,3 +17,16 @@ function onDone(data){
 }
 
 aatifReadFile().then(onDone)
+
+
+
+var d  = new Promise((resolve)=>{
+  resolve("foo")
+})
+
+function callback(){
+    console.log(d);
+    
+}
+
+d.then(callback)

@@ -54,5 +54,3 @@ function doSomething(a,b,fn){
 }
 
 console.log(doSomething(2,2,cube));
-
-

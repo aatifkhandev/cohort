@@ -2,30 +2,34 @@
 
 // 1. using random user API
 
-// fetch('https://randomuser.me/api').then(response=>{
-//     return response.json()
-// }).then(data=>{
-//     console.log(data);
+fetch('https://randomuser.me/api').then(response=>{
+    return response.json()
+}).then(data=>{
+    console.log(data);
     
-// }).catch(error=>{
-//     console.log('Error:', error);
-// })
+}).catch(error=>{
+    console.log('Error:', error);
+})
 
-// function abc(){
-//     let a  = new Promise((resolve,reject)=>{
-//     fetch('https://randomuser.me/api').then(response=>{
-//         if(!response.ok){
-//             throw new Error(`HTTP error! Status: ${response.status}`)
-//         }
-//         return response.json()
-//     }).then(data=>resolve(data))
-//     .catch(error=>reject(error))
-//     })
-//    return a;
-// }
 
-// abc().then(data=>console.log(data)).catch(error=>console.log(error))
+//using Promises , .then  , .error
+function abc(){  
+    let a  = new Promise((resolve,reject)=>{
+    fetch('https://randomuser.me/api').then(response=>{
+        if(!response.ok){
+            throw new Error(`HTTP error! Status: ${response.status}`)
+        }
+        return response.json()
+    }).then(data=>resolve(data))
+    .catch(error=>reject(error))
+    })
+   return a;
+}
 
+abc().then(data=>console.log(data)).catch(error=>console.log(error))
+
+
+//Using async await 
  async function fetchRandomUser(){
     try{
         let response = await fetch('https://randomuser.me/api');

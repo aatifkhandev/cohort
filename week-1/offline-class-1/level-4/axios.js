@@ -8,3 +8,15 @@ axios.get(`https://randomuser.me/api`)
     .catch(error => {
         console.log('Error:', error);
     });
+
+async function fetchRandomUser1(){
+    try{
+        const data =  await axios.get('https://randomuser.me/api')
+        console.log(data);
+        
+    }catch(error){
+        console.error('Error fetching data:', error.message);
+    }
+}
+
+fetchRandomUser1()

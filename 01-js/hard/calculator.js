@@ -24,10 +24,10 @@ class Calculator {
     this.result+=num;
   }
   sub(num){
-    this.result-=sub;
+    this.result-=num;
   }
   mul(num){
-    this.result*=mul;
+    this.result*=num;
   }
   div(num) {
     if(num === 0) {
@@ -59,5 +59,7 @@ class Calculator {
 const calc = new Calculator();
 console.log(calc.calculate("10 + 2 * (6 - (4 + 1) / 2) + 7")); // 20
 console.log(calc.calculate("5 + 3 * 2")); // 11
+console.log(calc.calculate("2+3-5"));
+
 
 module.exports = Calculator;

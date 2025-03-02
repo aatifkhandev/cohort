@@ -49,3 +49,21 @@ console.log(data);
 },1000)
  
 })
+
+
+function xyz(){
+    let q = new Promise((resolve)=>{   // adding settimeout
+    setTimeout( resolve("Hii there 1"),5000)
+    })
+    return q;
+}
+
+//Actually logging the data with what is actually resolved
+const ans = xyz()
+ans.then((data)=>{
+setTimeout(()=>{
+console.log(data);
+
+},1000)
+ 
+})

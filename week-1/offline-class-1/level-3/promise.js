@@ -30,3 +30,22 @@ function callback(){
 }
 
 d.then(callback)
+
+
+//dummy async function that actually gets resolves
+function abc(){
+    let p = new Promise((resolve)=>{
+     resolve("Hii there")
+    })
+    return p;
+}
+
+//Actually logging the data with what is actually resolved
+const value = abc()
+value.then((data)=>{
+setTimeout(()=>{
+console.log(data);
+
+},1000)
+ 
+})

@@ -67,3 +67,19 @@ console.log(data);
 },1000)
  
 })
+
+function lastOne(){
+    let r = new Promise((resolve)=>{
+     resolve("HI there 2")
+    })
+    return r
+}
+
+function main(){
+    lastOne().then((data)=>{
+      console.log(data);
+      
+    })
+}
+
+main()

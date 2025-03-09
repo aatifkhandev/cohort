@@ -18,7 +18,7 @@ app.get("/route-handler",(req,res)=>{
 })
 
 app.post('/conversation',(req,res)=>{
-    console.log(req.body);
+    console.log(req.body.message);
     
  res.json({
     msg:"2+2 = 4"

@@ -10,6 +10,7 @@ const users = [{
     },]
 }]
 
+app.use(express.json())
 
 app.get('/',(req,res)=>{
     const johnKidneys = users[0].kidneys
@@ -34,6 +35,16 @@ app.get('/',(req,res)=>{
         numberOfHealthyKidneys,
         numberOfUnhealthyHealthyKidneys
     })
+})
+
+app.post('/',(req,res)=>{
+ const isHealthy  = req.body.isHealthy;
+ users[0].kidneys.push({
+    healthy:isHealthy
+ })
+ res.json({
+    msg:"done"
+ })
 })
 
 

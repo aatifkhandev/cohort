@@ -21,13 +21,10 @@ app.get('/',(req,res)=>{
         //     if(johnKidneys[i].healthy){
             //         numberOfHealthyKidneys = numberOfHealthyKidneys+1
             //     }
-            // }
+            // }  -> This is the standard way of writing loop , below used loop
             
             
-             let numberOfHealthyKidneys = johnKidneys.filter((item)=>{
-                return item.healthy;
-
-             }).length
+    let numberOfHealthyKidneys = johnKidneys.filter((item)=>item.healthy).length;
              
 
     const numberOfUnhealthyHealthyKidneys = numberOfKidneys - numberOfHealthyKidneys

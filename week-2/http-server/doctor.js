@@ -54,6 +54,26 @@ app.put('/',(req,res)=>{ //changing all kidneys to healthy
   res.json({})
 })
 
+app.delete('/',(req,res)=>{ // deleting all unHealthy 
+    
+// users[0].kidneys = users[0].kidneys.filter((kidney)=>kidney.healthy) -> using filter
+
+const newKidneys  = []
+
+for(let i=0; i < users[0].kidneys.length;i++){
+    if(users[0].kidneys[i].healthy){
+     newKidneys.push({
+        healthy : true
+     })
+    }
+  }
+  
+  users[0].kidneys = newKidneys;
+
+  res.json({msg : "done"})
+        
+    
+})
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

@@ -47,6 +47,13 @@ app.post('/',(req,res)=>{
  })
 })
 
+app.put('/',(req,res)=>{ //changing all kidneys to healthy
+  for(let i=0; i < users[0].kidneys.length;i++){
+    users[0].kidneys[i].healthy = true
+  }
+  res.json({})
+})
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

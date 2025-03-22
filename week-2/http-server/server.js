@@ -1,10 +1,17 @@
-const express = require('express'); // Import Express
-const app = express(); // Create an Express app
-const port = 3000; // App will listen on port 3000
+const express = require('express'); 
+const app = express(); // 
+const port = process.env.port||3009; 
 
-// GET route for the root URL
+function add(a,b){
+return a+b;
+}
+
+
 app.get('/', (req, res) => {
-  res.send("<b>Hello</b>"); // Send bold HTML text
+  const a = Number(req.query.a)
+  const b = Number(req.query.b)
+  const ans = add(a,b)
+  res.send(ans)
 });
 
 // POST route for '/conversations'

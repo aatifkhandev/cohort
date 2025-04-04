@@ -58,22 +58,42 @@ app.delete('/',(req,res)=>{ // deleting all unHealthy
     
 // users[0].kidneys = users[0].kidneys.filter((kidney)=>kidney.healthy) -> using filter
 
-const newKidneys  = []
+//only if there is one unhealthy kidney do this atLeast return 411
 
-for(let i=0; i < users[0].kidneys.length;i++){
-    if(users[0].kidneys[i].healthy){
-     newKidneys.push({
-        healthy : true
-     })
-    }
-  }
-  
-  users[0].kidneys = newKidneys;
+if(isThereAtLeastOneUnHealthyKidney){
+    const newKidneys  = []
 
-  res.json({msg : "done"})
+    for(let i=0; i < users[0].kidneys.length;i++){
+        if(users[0].kidneys[i].healthy){
+         newKidneys.push({
+            healthy : true
+         })
+        }
+      }
+      
+      users[0].kidneys = newKidneys;
+    
+      res.json({msg : "done"})
+}else{
+ res.status(411).json({
+    msg : "you have no bad kidneys"
+ })
+}
+
+
         
     
 })
+
+function isThereAtLeastOneUnHealthyKidney(){
+    let AtLeastOneUnHealthyKidney = false
+    for(let i=0; i < users[0].kidneys.length;i++){
+        if(!users[0].kidneys[i].healthy){
+         AtLeastOneUnHealthyKidney = true
+}
+    }
+    return AtLeastOneUnHealthyKidney
+}
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

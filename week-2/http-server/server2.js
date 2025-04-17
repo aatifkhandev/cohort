@@ -28,7 +28,7 @@ function isThereAtLeastOneUnHealthyKidney(){
   return AtLeastOneUnHealthyKidney
 }
    
-app.get('/',(req,res)=>{
+app.get('/',(req,res)=>{   //GET - User can check how many kidneys they have and their health 
   const abcKidneys = users[0].kidneys
   const numberOfKidneys = abcKidneys.length
   let numberOfHealthyKidneys = 0
@@ -46,7 +46,7 @@ app.get('/',(req,res)=>{
   })
 })
 
-app.post('/',(req,res)=>{
+app.post('/',(req,res)=>{  //POST - User can add a new kidney 
 const isHealthy = req.body.isHealthy;
 users[0].kidneys.push({
   healthy:isHealthy
@@ -56,14 +56,14 @@ res.json({
 })
 })
 
-app.put('/',(req,res)=>{
+app.put('/',(req,res)=>{   //PUT - User can replace a kidney, make it healthy
   for(let i=0;i<users[0].kidneys.length;i++){
     users[0].kidneys[i].healthy = true
   }
   res.json({})
 })
 
-app.delete('/',(req,res)=>{
+app.delete('/',(req,res)=>{  //DELETE - User can remove a kidney
 const newKidneys = [];
 for(let i = 0; i<users[0].kidneys.length;i++){
 if(users[0].kidneys[i].healthy){

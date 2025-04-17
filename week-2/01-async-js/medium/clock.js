@@ -1,4 +1,4 @@
-// import { counter } from "../easy/2counter"
+
 
 
 function time(){

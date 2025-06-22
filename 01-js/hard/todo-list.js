@@ -78,5 +78,4 @@ console.log(todoList.getAll()); // ["Buy groceries", "Clean the kitchen"]
 todoList.clear();
 console.log(todoList.getAll()); // []
 
-
 module.exports = Todo;

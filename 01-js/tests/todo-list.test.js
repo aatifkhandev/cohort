@@ -35,20 +35,24 @@ describe('Todo', () => {
 	});
 
 	test('update', () => {
-		todoList.add('Task 1');
-		todoList.add('Task 2');
-		todoList.add('Task 3');
+	todoList.add('Task 1');
+	todoList.add('Task 2');
+	todoList.add('Task 3');
 
-		todoList.update(1, 'Updated Task 2');
-		expect(todoList.get(1)).toBe('Updated Task 2');
+	todoList.update(1, 'Updated Task 2');
+	expect(todoList.get(1)).toBe('Updated Task 2');
 
+	expect(() => {
 		todoList.update(3, 'Invalid Task');
-		expect(todoList.getAll()).toEqual([
-			'Task 1',
-			'Updated Task 2',
-			'Task 3',
-		]);
-	});
+	}).toThrow("Invalid index");
+
+	expect(todoList.getAll()).toEqual([
+		'Task 1',
+		'Updated Task 2',
+		'Task 3',
+	]);
+});
+
 
 	test('get', () => {
 		todoList.add('Task 1');

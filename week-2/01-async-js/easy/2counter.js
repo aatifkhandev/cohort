@@ -1,6 +1,6 @@
 // Without using setInterval, try to code a counter in Javascript.
 let count=0;
-function counter(){
+ export function counter(){
     if(count<10){
 
         count+=1;

@@ -5,11 +5,15 @@
 function wait(n) {
     return new Promise((res,rej)=>{
       setTimeout(()=>{
-         res()
+         res(n)
       },n*1000)
+   console.log(n);
    
     })
    
 }
+wait(3).then((val)=>{
+console.log(val);
 
+})
 module.exports = wait;

@@ -3,6 +3,7 @@
 */
 
 function wait(n) {
+    let ans = 0
 }
 
 module.exports = wait;

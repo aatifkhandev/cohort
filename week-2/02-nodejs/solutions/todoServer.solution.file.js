@@ -5,7 +5,8 @@ const fs = require("fs");
 const app = express();
 
 app.use(bodyParser.json());
-
+//This is hard todo and it uses 
+//It persists data to a file (todos.json) → so even if you restart the server, your todos are still there.
 function findIndex(arr, id) {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i].id === id) return i;

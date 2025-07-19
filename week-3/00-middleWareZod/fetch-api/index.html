@@ -24,10 +24,12 @@
 
               console.log(finalData);
               
+              const getData = document.getElementById('ani')
+               getData.innerHTML = JSON.stringify(finalData.data.map(x=>x.firstname).join(','))
            }
      </script>
 
 
-    <button onclick="getAnimalData()">Get Animal Data</button>
+    <button onclick="getAnimalData()" id="ani">Get Animal Data</button>
 </body>
 </html>

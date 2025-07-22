@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <input type="number" id="a">
+    <br>
+    <br>
+    <input type="number" id="b">
+    <button onclick="sum()" id="cal">Calculate Sum</button>
+
+</head>
+<script>
+    function sum(){
+    let a = document.getElementById('a')
+    let b = document.getElementById('b')
+    let cal = document.getElementById('cal')
+    cal.innerHTML(a+b)
+    }
+</script>
+<body>
+    
+</body>
+</html>

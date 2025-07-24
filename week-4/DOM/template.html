@@ -10,14 +10,20 @@
     <br>
     <input type="number" id="b">
     <button onclick="sum()" id="cal">Calculate Sum</button>
+    <div id="result">The result is : </div>
 
 </head>
 <script>
     function sum(){
     let a = document.getElementById('a')
     let b = document.getElementById('b')
-    let cal = document.getElementById('cal')
-    cal.innerHTML(a+b)
+
+    let aValue = parseInt(a.value)
+    let bValue = parseInt(b.value)
+    let sum = aValue+bValue
+    document.getElementById('result').innerHTML = "The result is: " + sum;
+
+
     }
 </script>
 <body>

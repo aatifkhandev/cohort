@@ -1,5 +1,16 @@
 {
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^5.1.0"
-  }
+  },
+  "name": "week-4",
+  "description": "You have been given the code of a purely frontend TODO app You have to fill in the following functions -   - addTodoToDom  - removeTodoFromDom  - updateTodoInDom  - updateState",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

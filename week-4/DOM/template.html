@@ -5,15 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     
-    <input type="number" id="a">
+    <input oninput="debounce()" type="number" id="a">
     <br>
     <br>
-    <input type="number" id="b">
-    <button onclick="sum()" id="cal">Calculate Sum</button>
+    <input oninput="debounce()" type="number" id="b">
+    <!-- <button onclick="sum()" id="cal">Calculate Sum</button> -->
     <div id="result">The result is : </div>
 
 </head>
 <script>
+
+
+let timeout;
+
+function debounce(){
+    clearTimeout(timeout);
+
+    timeout = setTimeout(()=>{
+        sum()
+    },1000)
+   
+}
+
 //     function sum(){
 //     let a = document.getElementById('a').value
 //     let b = document.getElementById('b').value
@@ -27,6 +40,9 @@
 //    })
 // }
     // element.innerHTML = parseInt(a)+parseInt(b);
+
+
+
 
    async function sum(){
         let a = document.getElementById('a').value

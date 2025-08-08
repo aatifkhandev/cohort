@@ -36,16 +36,32 @@ const express  = require('express')
 const app = express()
 const port = 3001
 
-let task = {
-id:1,
-title : 'Apple',
-completed : true
-}
+let tasks = []
+
+app.use(express.json())
 
 app.get('/tasks',(req,res)=>{
-    res.send(task)
+    res.json(tasks)
 })
 
+
+app.post('/tasks',(req,res)=>{
+    // POST /tasks
+// Accept a new task with id, title, and completed in the body.
+    const id = parseInt(req.body.id)
+    const title = req.body.title;
+    const completed  = req.body.completed
+
+   if (!id || typeof title !== 'string' || typeof completed !== 'boolean') {
+  return res.status(400).json({ msg: 'Invalid inputs' });
+}
+const task  = {id,title,completed}
+   tasks.push(task)
+ 
+    res.json({
+        task
+    })
+})
 
 app.listen(port,()=>{
     console.log(`Listening on ${port}`);

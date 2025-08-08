@@ -78,7 +78,9 @@ app.put('/tasks/:id',(req,res)=>{
      }
 
      tasks[findTask].title = title
-     tasks[findTask].completed = completed
+     tasks[findTask].completed = completed  //Accesses the task at that index in the tasks array (tasks[1] in our case).
+
+// Updates its title property with the new value from the request body.
 
      res.json({
         tasks : tasks[findTask]

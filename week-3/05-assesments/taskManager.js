@@ -83,8 +83,26 @@ app.put('/tasks/:id',(req,res)=>{
      res.json({
         tasks : tasks[findTask]
      })
+    });
+     app.delete('/tasks/:id',(req,res)=>{
+         const id = parseInt(req.params.id)
+         if(!id){
+             return res.status(400).json({ msg: 'Invalid inputs' });
+         }
+         const index = tasks.findIndex(t=>t.id===id )
+         
+     if(index == -1){
+           return res.status(404).json({ msg: 'Task not found' });
+     }
+     const deletedTask = tasks[index]
+     tasks.splice(index,1)
 
-})
+      res.json({
+        task : deletedTask
+      })
+     })
+
+
 
 app.listen(port,()=>{
     console.log(`Listening on ${port}`);

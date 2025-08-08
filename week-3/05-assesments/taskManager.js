@@ -63,6 +63,29 @@ const task  = {id,title,completed}
     })
 })
 
+app.put('/tasks/:id',(req,res)=>{
+    const id = parseInt(req.params.id)
+    const title = req.body.title;
+    const completed  = req.body.completed
+    
+  if (!id || (title !== undefined && typeof title !== 'string') || (completed !== undefined && typeof completed !== 'boolean')) {
+    return res.status(400).json({ msg: 'Invalid inputs' });
+  }
+     const findTask = tasks.findIndex(t=>t.id===id)
+
+     if(findTask == -1){
+           return res.status(404).json({ msg: 'Task not found' });
+     }
+
+     tasks[findTask].title = title
+     tasks[findTask].completed = completed
+
+     res.json({
+        tasks : tasks[findTask]
+     })
+
+})
+
 app.listen(port,()=>{
     console.log(`Listening on ${port}`);
     

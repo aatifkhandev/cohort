@@ -1,85 +1,91 @@
-const express = require('express')
-const app = express()
-const port = 3003
+const express = require('express');
+const app = express();
+const port = 3003;
 
-let tasks = []
+let tasks = [];
+app.use(express.json());
 
-app.use(express.json())
+//rate - limiter
+const requests = {};
+function rateLimiter(req, res, next) {
+  const ip = req.ip;
+  const now = Date.now();
 
-
-const requests = {}
-app.use((req,res,next)=>{  // 1-> rate - limiter
-  const ip = (req.ip);
-  const now = Date.now()
-
-    if (!requests[ip]) {
-    // First time seeing this IP
+  if (!requests[ip]) {
     requests[ip] = { count: 1, firstRequestTime: now };
-    return next();
-  }
-
+  } else {
     const timeSinceFirstRequest = now - requests[ip].firstRequestTime;
 
-      if (timeSinceFirstRequest < 60 * 1000) { // within 1 minute
-    requests[ip].count++;
-
-     if (requests[ip].count > 5) {
-      return res.status(429).json({ msg: "Too many requests. Try again later." });
+    if (timeSinceFirstRequest < 60 * 1000) {
+      requests[ip].count++;
+      if (requests[ip].count > 5) {
+        return res
+          .status(429)
+          .json({ msg: "Too many requests. Try again later." });
+      }
+    } else {
+      // Reset after 1 minute
+      requests[ip] = { count: 1, firstRequestTime: now };
     }
-      } else {
-    // Reset counter after 1 minute
-    requests[ip] = { count: 1, firstRequestTime: now };
   }
   next();
+}
+app.use(rateLimiter);
 
+//routes
+app.get('/tasks', (req, res) => {
+  res.json(tasks);
+});
 
-}) 
+app.post('/tasks', (req, res, next) => {
+  const { id, title } = req.body;
 
+  //  Simulate error if title === "fail"
+  if (title === "fail") {
+    return next(new Error("Simulated failure: Task title cannot be 'fail'"));
+  }
 
-app.get('/tasks',(req,res)=>{
- res.send(tasks)    
-})
+  tasks.push({ id: parseInt(id), title, completed: true });
+  res.json({ tasks });
+});
 
-app.post('/tasks',(req,res)=>{
-    const id = parseInt(req.body.id)
-    const title = req.body.title
-    const completed = true
+app.put('/tasks/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const title = req.body.title;
 
-    tasks.push({
-        id,
-        title,
-        completed
-    });
-    res.json({tasks})
-})
+  const index = tasks.findIndex(t => t.id === id);
+  if (index === -1) {
+    return res.status(404).json({ message: "Invalid id" });
+  }
 
-app.put('/tasks/:id',(req,res)=>{
-    const id = parseInt(req.params.id)
-    const title = req.body.title
-    const completed = true
-    if(!id){
-        res.status(404).json({message:"Invalid id"})
-    }
-        const index = tasks.findIndex(t=>t.id==id)
-        tasks[index].title = title
-        tasks[index].completed = completed
-    
-    res.json({tasks:tasks[index]})
-})
+  tasks[index].title = title;
+  tasks[index].completed = true;
+  res.json({ task: tasks[index] });
+});
 
-app.delete('/tasks/:id',(req,res)=>{
-    const id = parseInt(req.params.id)
-    if(!id){
-        res.status(403).json({message:"invalid input"})
-    }
-    const index = tasks.find(t=>t.id===id)
-    const deletedTask = tasks.splice(index,1)
-    res.json({
-        tasks:deletedTask
-    })
-})
+app.delete('/tasks/:id', (req, res) => {
+  const id = parseInt(req.params.id);
 
-app.listen(port,()=>{
-    console.log(`Listening on ${port}`);
-    
-})
+  const index = tasks.findIndex(t => t.id === id);
+  if (index === -1) {
+    return res.status(404).json({ message: "Task not found" });
+  }
+
+  const deletedTask = tasks.splice(index, 1);
+  res.json({ deleted: deletedTask });
+});
+
+//error - handler
+let errorCounter = 0;
+function errorHandler(err, req, res, next) {
+  errorCounter++;
+  console.error(`Error ${errorCounter}: ${err.message}`);
+  res.status(500).json({ msg: err.message });
+}
+
+// IMPORTANT: Error handler goes after all routes
+app.use(errorHandler);
+
+app.listen(port, () => {
+  console.log(`Listening on ${port}`);
+});

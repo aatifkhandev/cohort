@@ -39,6 +39,17 @@ app.put('/tasks/:id',(req,res)=>{
     res.json({tasks:tasks[index]})
 })
 
+app.delete('/tasks/:id',(req,res)=>{
+    const id = parseInt(req.params.id)
+    if(!id){
+        res.status(403).json({message:"invalid input"})
+    }
+    const index = tasks.find(t=>t.id===id)
+    const deletedTask = tasks.splice(index,1)
+    res.json({
+        tasks:deletedTask
+    })
+})
 
 app.listen(port,()=>{
     console.log(`Listening on ${port}`);

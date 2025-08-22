@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+     <button id="btn" onclick="addTodo()">Add Todo</button>
+     <div class="container" id="container"></div>
+
+
+    <script>
+     function addTodo(){
+        const parent = document.createElement('div')
+        const child = document.createElement('div')
+        child.innerHTML = 'title'
+        const child2 = document.createElement('div')
+        child2.innerHTML = 'description'
+        const child3 = document.createElement('button')
+        child3.innerHTML = "mark as done"
+        parent.appendChild(child)
+        parent.appendChild(child2)
+        parent.appendChild(child3)
+
+        const container = document.getElementById('container')
+        container.append(parent)
+        
+     }
+
+    </script>
+</body>
+</html>

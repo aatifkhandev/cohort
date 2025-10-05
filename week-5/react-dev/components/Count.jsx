@@ -5,7 +5,14 @@ export default function Count(){
 
     return(
         <div>
-            <button onClick={()=>setCount(count+1)}>{"Counter -  " + count}</button>
-        </div>
+        <CountHandler count={count} setCount={setCount}></CountHandler>
+     </div>
     )
+
 }
+function CountHandler(props){
+   return(
+<button onClick={()=>props.setCount(props.count+1)}>Count is {props.count}</button>
+   )
+}
+
